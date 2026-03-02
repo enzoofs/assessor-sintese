@@ -1,0 +1,53 @@
+{
+  "rules": [
+    {
+      "ncm": "38221990",
+      "description": "Reagentes de diagnóstico ou de laboratório (kits, master mix, tampões, meios de cultura, reagentes químicos em geral)",
+      "keywords": ["reagente", "kit", "master mix", "tampao", "buffer", "meio de cultura", "agar", "pcr mix", "supermix", "shield", "purification", "extraction", "library prep", "corante", "stain", "dye", "marker", "ladder", "gel", "solucao", "medium", "dmem", "rpmi", "antibody", "anticorpo"],
+      "count": 321
+    },
+    {
+      "ncm": "35079039",
+      "description": "Enzimas preparadas (polimerase, nuclease, transcriptase, ligase, enzimas de restrição)",
+      "keywords": ["enzyme", "enzima", "polymerase", "polimerase", "nuclease", "cas9", "ligase", "transcriptase", "endonuclease", "restriction", "restricao", "dnase", "rnase", "proteinase"],
+      "count": 69
+    },
+    {
+      "ncm": "29349934",
+      "description": "Oligonucleotídeos de DNA/RNA (primers, sondas, adaptadores, crRNA, oligos sintéticos)",
+      "keywords": ["oligonucleotideo", "primer", "probe", "sonda", "crrna", "trrna", "grna", "adapter", "adaptador", "oligo", "donor oligo", "blocker"],
+      "count": 27
+    },
+    {
+      "ncm": "90279099",
+      "description": "Outros instrumentos e aparelhos para análises físicas ou químicas NÃO ESPECIFICADOS - inclui: cabines para PCR, workstations, sistemas de imagem western blot, módulos de eletroforese, acessórios de equipamentos de laboratório. ATENÇÃO: esta é a NCM padrão para EQUIPAMENTOS de laboratório da Síntese.",
+      "keywords": ["system", "sistema", "workstation", "cabine", "imaging", "imagem", "module", "modulo", "equipment", "equipamento", "instrument", "instrumento", "blotting module", "electrophoresis", "pcr workstation"],
+      "count": 10
+    },
+    {
+      "ncm": "90275090",
+      "description": "Instrumentos e aparelhos para análises físicas ou químicas (espectrofotômetros, nanodrop)",
+      "keywords": ["spectrophotometer", "espectrofotometro", "nanodrop", "photometer", "analyzer"],
+      "count": 6
+    },
+    {
+      "ncm": "90272029",
+      "description": "Aparelhos de cromatografia (HPLC, colunas cromatográficas)",
+      "keywords": ["chromatography", "cromatografia", "hplc", "column", "coluna"],
+      "count": 5
+    },
+    {
+      "ncm": "84798912",
+      "description": "Máquinas e aparelhos mecânicos (centrífugas, agitadores, homogeneizadores)",
+      "keywords": ["centrifuge", "centrifuga", "shaker", "agitador", "homogenizer", "homogeneizador", "vortex", "mixer"],
+      "count": 4
+    },
+    {
+      "ncm": "28539090",
+      "description": "Compostos inorgânicos (água ultrapura, soluções inorgânicas)",
+      "keywords": ["agua ultrapura", "nuclease free water", "ultrapure water"],
+      "count": 3
+    }
+  ],
+  "default_ncm": "38221990"
+}

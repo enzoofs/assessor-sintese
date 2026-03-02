@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s \"http://localhost:3000/api/sankhya/check-duplicate?code=9704416\")",
+      "Bash(curl -s \"http://localhost:3000/api/sankhya/check-duplicate?code=NAOEXISTE123\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:3000/\")",
+      "Bash(node -e \":*)"
+    ]
+  }
+}

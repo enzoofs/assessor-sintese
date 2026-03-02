@@ -1,0 +1,256 @@
+{
+  "ACCURIS": [
+    {
+      "code": "30202",
+      "name": "ACCURIS - EQUIPAMENTOS",
+      "category": "EQUIPAMENTOS"
+    },
+    {
+      "code": "30201",
+      "name": "ACCURIS - REAGENTES",
+      "category": "REAGENTES"
+    }
+  ],
+  "ADS": [
+    {
+      "code": "80100",
+      "name": "ADS - REAGENTES",
+      "category": "REAGENTES"
+    }
+  ],
+  "BENCHMARK": [
+    {
+      "code": "30102",
+      "name": "BENCHMARK - EQUIPAMENTOS",
+      "category": "EQUIPAMENTOS"
+    },
+    {
+      "code": "30101",
+      "name": "BENCHMARK - REAGENTES",
+      "category": "REAGENTES"
+    },
+    {
+      "code": "30103",
+      "name": "BENCHMARK - ACESS, CONSUM",
+      "category": "ACESS, CONSUM"
+    }
+  ],
+  "BIOCARE": [
+    {
+      "code": "50100",
+      "name": "BIOCARE - EQUIP, ACESS, CONSUM",
+      "category": "EQUIP, ACESS, CONSUM"
+    },
+    {
+      "code": "50200",
+      "name": "BIOCARE - REAGENTES IVD",
+      "category": "REAGENTES IVD"
+    },
+    {
+      "code": "50300",
+      "name": "BIOCARE - REAGENTES RUO",
+      "category": "REAGENTES RUO"
+    }
+  ],
+  "BIORAD": [
+    {
+      "code": "20300",
+      "name": "BIORAD - CROMATOGRAFIA",
+      "category": "CROMATOGRAFIA"
+    },
+    {
+      "code": "20200",
+      "name": "BIORAD - EQUIP, ACESS E CONSUM",
+      "category": "EQUIP, ACESS E CONSUM"
+    },
+    {
+      "code": "20100",
+      "name": "BIORAD - REAGENTES",
+      "category": "REAGENTES"
+    }
+  ],
+  "HERMLE": [
+    {
+      "code": "30301",
+      "name": "HERMLE - EQUIP, ACES E CONSUM",
+      "category": "EQUIP, ACES E CONSUM"
+    },
+    {
+      "code": "30302",
+      "name": "HERMLE - REAGENTES",
+      "category": "REAGENTES"
+    }
+  ],
+  "HIMEDIA": [
+    {
+      "code": "100200",
+      "name": "HIMEDIA - EQUIPAMENTOS",
+      "category": "EQUIPAMENTOS"
+    },
+    {
+      "code": "100100",
+      "name": "HIMEDIA - REAGENTES",
+      "category": "REAGENTES"
+    },
+    {
+      "code": "100300",
+      "name": "HIMEDIA - CONSUMIVEIS",
+      "category": "CONSUMIVEIS"
+    }
+  ],
+  "IDT": [
+    {
+      "code": "10102",
+      "name": "IDT - QPCR",
+      "category": "QPCR"
+    },
+    {
+      "code": "10100",
+      "name": "IDT - BIOMOL",
+      "category": "BIOMOL"
+    },
+    {
+      "code": "10201",
+      "name": "IDT - NGS XGEN",
+      "category": "NGS XGEN"
+    },
+    {
+      "code": "10101",
+      "name": "IDT - PCR",
+      "category": "PCR"
+    },
+    {
+      "code": "10102",
+      "name": "IDT - QPCR",
+      "category": "QPCR"
+    },
+    {
+      "code": "10103",
+      "name": "IDT - MGB E GMP",
+      "category": "MGB E GMP"
+    },
+    {
+      "code": "10104",
+      "name": "IDT - REAGENTES ADICIONAIS",
+      "category": "REAGENTES ADICIONAIS"
+    },
+    {
+      "code": "10105",
+      "name": "IDT - CRISPR",
+      "category": "CRISPR"
+    },
+    {
+      "code": "10106",
+      "name": "IDT - FORMULAÇOES CUSTOMIZADAS",
+      "category": "FORMULAÇOES CUSTOMIZADAS"
+    },
+    {
+      "code": "10107",
+      "name": "IDT - SOLUÇÕES COVID/INFLUENZA",
+      "category": "SOLUÇÕES COVID/INFLUENZA"
+    },
+    {
+      "code": "10300",
+      "name": "IDT - NGS CUSTOMIZADOS",
+      "category": "NGS CUSTOMIZADOS"
+    }
+  ],
+  "NGS ARCHER": [
+    {
+      "code": "10400",
+      "name": "NGS ARCHER",
+      "category": "GERAL"
+    },
+    {
+      "code": "10400",
+      "name": "NGS ARCHER",
+      "category": "GERAL"
+    }
+  ],
+  "IMPLEN": [
+    {
+      "code": "110100",
+      "name": "IMPLEN - EQUIPAMENTOS",
+      "category": "EQUIPAMENTOS"
+    }
+  ],
+  "INVITEK": [
+    {
+      "code": "60100",
+      "name": "INVITEK - EQUIPAMENTOS",
+      "category": "EQUIPAMENTOS"
+    },
+    {
+      "code": "60200",
+      "name": "INVITEK - REAGENTES",
+      "category": "REAGENTES"
+    }
+  ],
+  "INVIVOGEN": [
+    {
+      "code": "70100",
+      "name": "INVIVOGEN - REAGENTES",
+      "category": "REAGENTES"
+    }
+  ],
+  "MTC": [
+    {
+      "code": "30401",
+      "name": "MTC - EQUIP, ACES E CONSUM",
+      "category": "EQUIP, ACES E CONSUM"
+    },
+    {
+      "code": "30402",
+      "name": "MTC - REAGENTES",
+      "category": "REAGENTES"
+    }
+  ],
+  "PCR BIOSYSTEMS": [
+    {
+      "code": "90100",
+      "name": "PCR BIOSYSTEMS - REAGENTES",
+      "category": "REAGENTES"
+    }
+  ],
+  "THISTLE": [
+    {
+      "code": "120200",
+      "name": "THISTLE - EQUIP, ACESS, CONSUM",
+      "category": "EQUIP, ACESS, CONSUM"
+    },
+    {
+      "code": "120100",
+      "name": "THISTLE - REAGENTES",
+      "category": "REAGENTES"
+    }
+  ],
+  "BIOTECH RABBIT": [
+    {
+      "code": "130100",
+      "name": "BIOTECH RABBIT -REAGENTES",
+      "category": "REAGENTES"
+    },
+    {
+      "code": "130200",
+      "name": "BIOTECH RABBIT - EQUIPAMENTOS",
+      "category": "EQUIPAMENTOS"
+    }
+  ],
+  "ZYMO": [
+    {
+      "code": "40200",
+      "name": "ZYMO - EQUIP, ACESS, CONSUM",
+      "category": "EQUIP, ACESS, CONSUM"
+    },
+    {
+      "code": "40100",
+      "name": "ZYMO - REAGENTES",
+      "category": "REAGENTES"
+    },
+    {
+      "code": "40300",
+      "name": "ZYMO - SERVIÇOS",
+      "category": "SERVIÇOS"
+    }
+  ]
+}

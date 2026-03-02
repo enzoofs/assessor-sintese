@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \":*)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src=no --import-alias \"@/*\" --use-npm)",
+      "Bash(npm init -y)",
+      "Bash(npm install next@14 react react-dom @anthropic-ai/sdk exceljs)",
+      "Bash(npm install -D typescript @types/react @types/react-dom @types/node tailwindcss postcss autoprefixer eslint eslint-config-next)",
+      "Bash(npm install clsx tailwind-merge lucide-react)",
+      "Bash(npx next build)",
+      "Bash(node scripts/analyze-groups.js)",
+      "Bash(curl -s \"http://localhost:3000/api/sankhya/audit\" -o /tmp/audit.json)",
+      "Bash(curl -s \"http://localhost:3000/api/sankhya/audit\" -o /tmp/audit2.json)",
+      "Bash(node -e \"var r=JSON.parse\\(require\\(''fs''\\).readFileSync\\(''C:/Users/ENZOFE~1/AppData/Local/Temp/audit2.json'',''utf8''\\)\\); console.log\\(''Total audited:'', r.total_audited\\); console.log\\(''Group issues:'', r.group_issues.length\\); console.log\\(''Unmapped brands:'', r.unmapped_brands.length\\); console.log\\(''\\\\nSample issues by brand:''\\); var byBrand={}; r.group_issues.forEach\\(function\\(i\\){ var b=i.marca; byBrand[b]=\\(byBrand[b]||0\\)+1; }\\); Object.keys\\(byBrand\\).sort\\(function\\(a,b\\){return byBrand[b]-byBrand[a];}\\).forEach\\(function\\(b\\){ console.log\\('' '', b||''\\(vazio\\)'', '':'', byBrand[b]\\); }\\);\")",
+      "Bash(curl -s \"http://localhost:3000/api/sankhya/audit?brand=IDT\" -o /tmp/audit_idt.json)",
+      "Bash(curl -s -X POST \"http://localhost:3000/api/sankhya/audit-export\" -H \"Content-Type: application/json\" -d '{\"\"issues\"\":[{\"\"codprod\"\":5180,\"\"ref_fornecedor\"\":\"\"689A\"\",\"\"marca\"\":\"\"IDT\"\",\"\"nome_produto\"\":\"\"TEST\"\",\"\"issue_type\"\":\"\"wrong_group\"\",\"\"current_value\"\":\"\"20100\"\",\"\"current_label\"\":\"\"BIORAD - REAGENTES\"\",\"\"suggested_value\"\":\"\"10101\"\",\"\"suggested_label\"\":\"\"IDT - PCR\"\",\"\"confidence\"\":\"\"alta\"\",\"\"notes\"\":\"\"teste\"\"}]}' -o /tmp/audit_test.xlsx -w \"%{http_code}\")"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\Enzo Ferraz\\.claude\\projects\\c--Users-Enzo-Ferraz-OneDrive---Sintese-Biotecnologia-Documentos-assessor-sintese"
+    ]
+  }
+}
