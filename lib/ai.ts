@@ -79,68 +79,136 @@ interface Step1Result {
   keywords_ncm: string[];
 }
 
-const STEP1_INSTRUCTIONS = `Você é um especialista em produtos para laboratório científico da empresa Síntese Assessoria Científica, distribuidora de produtos para laboratório no Brasil.
+// Brand-specific website mapping for product lookup
+const BRAND_WEBSITES: Record<string, string> = {
+  HIMEDIA: "himedialabs.com",
+  IDT: "idtdna.com",
+  BIORAD: "bio-rad.com",
+  ZYMO: "zymoresearch.com",
+  INVITEK: "invitek-molecular.com",
+  THISTLE: "thistlescientific.co.uk",
+  "BIOTECH RABBIT": "biotechrabbit.com",
+  INVIVOGEN: "invivogen.com",
+  "PCR BIOSYSTEMS": "pcrbio.com",
+  BENCHMARK: "benchmarkscientific.com",
+};
 
-VOCÊ DEVE buscar na web informações sobre o produto usando o código do fabricante e a marca fornecidos. Isso é OBRIGATÓRIO - não invente informações sem buscar primeiro.
+function getBrandWebsite(brand: string): string | null {
+  const normalized = brand.toUpperCase().trim();
+  for (const [key, site] of Object.entries(BRAND_WEBSITES)) {
+    if (normalized.includes(key)) return site;
+  }
+  return null;
+}
 
-Após encontrar as informações do produto, preencha os campos de cadastro.
+function buildBrandSpecificInstructions(brand: string): string {
+  const site = getBrandWebsite(brand);
+  const normalized = brand.toUpperCase().trim();
+
+  if (normalized.includes("HIMEDIA")) {
+    return `## INSTRUCOES ESPECIFICAS PARA HIMEDIA:
+OBRIGATORIO: Busque o produto EXCLUSIVAMENTE no site oficial ${site}
+- URL padrao: https://www.himedialabs.com/intl/en/products/ ou https://www.himedialabs.com/us/
+- Use o CODIGO DO PRODUTO (ex: MB003, MH081, MBT060A) para buscar no site
+- O nome_produto DEVE ser o nome EXATO que aparece no site da HiMedia, convertido para MAIUSCULAS
+- Adicione a quantidade/tamanho apos uma VIRGULA (extraia do sufixo do codigo, ex: -500G, -100ML, -20PR)
+- NUNCA traduza o nome para portugues - mantenha em INGLES como esta no site
+
+EXEMPLOS DE PRODUTOS HIMEDIA JA CADASTRADOS:
+- MB003-500G → "AMMONIUM PERSULPHATE, 500G"
+- MH081-500G → "AGAR MACCONKEY, 500G"
+- MBT060A-500U → "TAQ POLYMERASE (5 UNITS/UL), 500U"
+- MB575-20PR → "HIPURA VIRAL DNA PURIFICATION KIT, 20 PREPARACOES"
+- AL007A-500ML → "DMEM, HIGH GLUCOSE W/ 4.5GMS, 500ML"
+- TC194-5G → "BOVINE SERUM ALBUMIN FRACTION-V, 5G"
+- M393-500G → "DECARBOXYLASE BROTH BASE MOELLER, 500G"
+- MB583-50PR → "HIPURA DNA/RNA PURIFICATION KIT 50PR"
+- MB087-100MG → "RNASE A, 100MG"
+- MBT072-1000U → "HI-MMLV REVERSE TRANSCRIPTASE 1000U"
+- M118-100G → "MANNITOL SALT AGAR BASE, 100G"
+- S016-500ML → "LACTOPHENOL COTTON BLUE, 500ML"`;
+  }
+
+  if (site) {
+    return `## INSTRUCOES ESPECIFICAS PARA ${normalized}:
+Busque o produto preferencialmente no site oficial ${site}
+Use o nome EXATO que aparece no site do fabricante, convertido para MAIUSCULAS.`;
+  }
+
+  return "";
+}
+
+const STEP1_INSTRUCTIONS = `Voce e um especialista em produtos para laboratorio cientifico da empresa Sintese Assessoria Cientifica, distribuidora de produtos para laboratorio no Brasil.
+
+VOCE DEVE buscar na web informacoes sobre o produto usando o codigo do fabricante e a marca fornecidos. Isso e OBRIGATORIO - nao invente informacoes sem buscar primeiro.
+
+Apos encontrar as informacoes do produto, preencha os campos de cadastro.
+
+## REGRA CRITICA PARA nome_produto:
+- O nome_produto DEVE ser o nome EXATO do produto como aparece no site oficial do fabricante
+- Convertido para MAIUSCULAS
+- Em INGLES (como aparece no site do fabricante)
+- Se o codigo incluir o tamanho (ex: -500G, -100ML), adicione apos uma VIRGULA
+- NUNCA invente ou traduza nomes - use EXATAMENTE o que esta no site do fabricante
+- Exemplo: se o site diz "MacConkey Agar" e o codigo e MH081-500G, o nome_produto deve ser "MACCONKEY AGAR, 500G"
 
 ## REGRAS DE TEMPERATURA:
 
 TRANSPORTE:
-- "Ambiente" → produtos secos, equipamentos, consumíveis estáveis
-- "Gelo reciclável" → produtos que precisam de refrigeração (2-8°C), como anticorpos, enzimas sensíveis, meios de cultura líquidos
-- "Gelo seco" → produtos congelados (-20°C ou menos), como células, reagentes ultrassensíveis, meios com componentes instáveis
+- "Ambiente" → produtos secos, equipamentos, consumiveis estaveis
+- "Gelo reciclavel" → produtos que precisam de refrigeracao (2-8°C), como anticorpos, enzimas sensiveis, meios de cultura liquidos
+- "Gelo seco" → produtos congelados (-20°C ou menos), como celulas, reagentes ultrassensiveis, meios com componentes instaveis
 
 ARMAZENAGEM:
-- "Ambiente" → produtos estáveis à temperatura ambiente (meios de cultura em pó, equipamentos, plásticos)
-- "Refrigerado" → 2 a 8°C (enzimas, anticorpos, master mixes, meios líquidos)
-- "Congelado" → -20°C (kits sensíveis, reagentes de biologia molecular ultrassensíveis)
+- "Ambiente" → produtos estaveis a temperatura ambiente (meios de cultura em po, equipamentos, plasticos)
+- "Refrigerado" → 2 a 8°C (enzimas, anticorpos, master mixes, meios liquidos)
+- "Congelado" → -20°C (kits sensiveis, reagentes de biologia molecular ultrassensiveis)
 
-## FORMATO DAS DESCRIÇÕES:
-Você deve gerar DUAS descrições diferentes:
+## FORMATO DAS DESCRICOES:
+Voce deve gerar DUAS descricoes diferentes:
 
-### descricao (Descrição simplificada para o sistema Sankhya):
-- Descrição CURTA e DIRETA do produto (1-2 frases)
-- Em MAIÚSCULAS, em PORTUGUÊS, SEM ACENTOS
-- Foco no que o produto É e para que SERVE
-- Exemplo: "MEIO DE CULTURA AGAR MUELLER HINTON PARA TESTE DE SENSIBILIDADE ANTIMICROBIANA. FRASCO COM 500G."
+### descricao (Descricao simplificada para o sistema Sankhya):
+- Descricao CURTA e DIRETA do produto (1-2 frases)
+- Em MAIUSCULAS, em PORTUGUES, SEM ACENTOS
+- Comece com o NOME DO PRODUTO EM INGLES (mesmo nome usado em nome_produto), seguido de ponto
+- Depois descreva em portugues o que o produto e e para que serve
+- Exemplo: "MANNITOL SALT AGAR BASE. MEIO DE CULTURA MANITOL SALT AGAR BASE PARA ISOLAMENTO DE STAPHYLOCOCCUS PATOGENICOS EM AMOSTRAS CLINICAS E NAO CLINICAS, FRASCO DE 100G."
 
-### descricao_importacao (Descrição técnica completa para importação):
-- Descrição DETALHADA e TÉCNICA para fins de importação e classificação fiscal
-- Em MAIÚSCULAS, em PORTUGUÊS, SEM ACENTOS
-- Começar com o NOME DO PRODUTO seguido de ponto
-- Incluir: composição, uso, forma física, quantidade/volume, especificações técnicas
-- NÃO usar caracteres especiais como ®, ™, ©
+### descricao_importacao (Descricao tecnica completa para importacao):
+- Descricao DETALHADA e TECNICA para fins de importacao e classificacao fiscal
+- Em MAIUSCULAS, em PORTUGUES, SEM ACENTOS
+- Comecar com o NOME DO PRODUTO EM INGLES seguido de ponto
+- Incluir: composicao, uso, forma fisica, quantidade/volume, especificacoes tecnicas
+- NAO usar caracteres especiais como (R), (TM), (C)
 
 ## EXEMPLOS DE CADASTROS ANTERIORES:
 
 ${buildFewShotExamples()}
 
-## FORMATO DE SAÍDA:
-Responda EXCLUSIVAMENTE com um JSON válido. NUNCA escreva texto explicativo, desculpas ou comentários - APENAS o JSON.
-Mesmo que não encontre informações completas, SEMPRE retorne o JSON com os melhores dados disponíveis.
+## FORMATO DE SAIDA:
+Responda EXCLUSIVAMENTE com um JSON valido. NUNCA escreva texto explicativo, desculpas ou comentarios - APENAS o JSON.
+Mesmo que nao encontre informacoes completas, SEMPRE retorne o JSON com os melhores dados disponiveis.
 O JSON deve ter exatamente estes campos:
 {
-  "nome_produto": "NOME CURTO DO PRODUTO EM MAIÚSCULAS",
-  "descricao": "DESCRIÇÃO SIMPLIFICADA CURTA EM MAIÚSCULAS SEM ACENTOS",
-  "descricao_importacao": "DESCRIÇÃO TÉCNICA COMPLETA PARA IMPORTAÇÃO EM MAIÚSCULAS SEM ACENTOS",
-  "temp_transporte": "Ambiente|Gelo reciclável|Gelo seco",
+  "nome_produto": "NOME EXATO DO SITE DO FABRICANTE EM MAIUSCULAS, TAMANHO",
+  "descricao": "NOME EM INGLES. DESCRICAO SIMPLIFICADA EM PORTUGUES SEM ACENTOS",
+  "descricao_importacao": "NOME EM INGLES. DESCRICAO TECNICA COMPLETA PARA IMPORTACAO EM MAIUSCULAS SEM ACENTOS",
+  "temp_transporte": "Ambiente|Gelo reciclavel|Gelo seco",
   "temp_armazenagem": "Ambiente|Refrigerado|Congelado",
-  "cod_grupo": "CÓDIGO DO GRUPO DE PRODUTO",
+  "cod_grupo": "CODIGO DO GRUPO DE PRODUTO",
   "grupo_nome": "NOME DO GRUPO",
   "tipo_produto": "reagente|enzima|equipamento|consumivel|oligonucleotideo|kit|meio_de_cultura|anticorpo",
   "keywords_ncm": ["palavra1", "palavra2", "palavra3"]
 }
-REGRA ABSOLUTA: Sua resposta deve começar com { e terminar com }. Nenhum texto antes ou depois.
+REGRA ABSOLUTA: Sua resposta deve comecar com { e terminar com }. Nenhum texto antes ou depois.
 
-IMPORTANTE sobre keywords_ncm: Estas palavras serão usadas para buscar a NCM correta no sistema SISCOMEX.
-- Use palavras em PORTUGUÊS que descrevam a NATUREZA do produto para classificação fiscal
-- Para reagentes de laboratório: ["reagente", "diagnostico", "laboratorio"]
+IMPORTANTE sobre keywords_ncm: Estas palavras serao usadas para buscar a NCM correta no sistema SISCOMEX.
+- Use palavras em PORTUGUES que descrevam a NATUREZA do produto para classificacao fiscal
+- Para reagentes de laboratorio: ["reagente", "diagnostico", "laboratorio"]
 - Para enzimas: ["enzima", "preparada"]
 - Para equipamentos de PCR/lab: ["instrumento", "laboratorio", "analise"]
 - Para meios de cultura: ["meio", "cultura", "preparacao", "microbiologia"]
-- Para oligonucleotídeos: ["acido", "nucleico", "oligonucleotideo"]
+- Para oligonucleotideos: ["acido", "nucleico", "oligonucleotideo"]
 - Para anticorpos: ["reagente", "diagnostico", "anticorpo"]
 - Para equipamentos de imagem: ["instrumento", "aparelho", "analise", "fisico", "quimico"]
 - Para cabines, workstations, estufas: ["instrumento", "aparelho", "laboratorio"]
@@ -151,23 +219,47 @@ async function step1_identifyProduct(
   brand: string
 ): Promise<Step1Result> {
   const brandGroups = buildBrandGroupsContext(brand);
+  const brandInstructions = buildBrandSpecificInstructions(brand);
+  const website = getBrandWebsite(brand);
+
+  // Extract base code (without size suffix) for searching
+  const baseCode = manufacturerCode.replace(/-\d+.*$/, "");
+  const sizeMatch = manufacturerCode.match(/-(\d+\w+)$/);
+  const sizeFromCode = sizeMatch ? sizeMatch[1] : "";
+
+  // Build search instruction based on brand
+  let searchInstruction: string;
+  if (website) {
+    searchInstruction = `OBRIGATORIO: Busque o produto no site oficial do fabricante: ${website}
+Busque "site:${website} ${baseCode}" para encontrar a pagina exata do produto.
+Se nao encontrar com site:, busque "${baseCode} ${brand}" na web.
+Use o nome EXATO que aparece no site do fabricante.`;
+  } else {
+    searchInstruction = `Busque "${manufacturerCode} ${brand}" na web para encontrar as especificacoes reais do produto. NAO invente informacoes.`;
+  }
 
   // Use OpenAI Responses API with web_search_preview tool
   const response = await withRetry(() => client.responses.create({
     model: "gpt-4o",
     tools: [{ type: "web_search_preview" as const }],
     instructions: STEP1_INSTRUCTIONS,
-    input: `Busque na web informações sobre este produto e preencha os campos de cadastro:
+    input: `Busque na web informacoes sobre este produto e preencha os campos de cadastro:
 
-CÓDIGO DO FABRICANTE: ${manufacturerCode}
+CODIGO DO FABRICANTE: ${manufacturerCode}
+CODIGO BASE (sem tamanho): ${baseCode}
+TAMANHO EXTRAIDO DO CODIGO: ${sizeFromCode || "nao especificado no codigo"}
 MARCA: ${brand}
 
-GRUPOS DE PRODUTO DISPONÍVEIS PARA ESTA MARCA:
+${searchInstruction}
+
+${brandInstructions}
+
+GRUPOS DE PRODUTO DISPONIVEIS PARA ESTA MARCA:
 ${brandGroups}
 
-IMPORTANTE: Busque "${manufacturerCode} ${brand}" na web para encontrar as especificações reais do produto. NÃO invente informações.
+IMPORTANTE: O nome_produto deve ser o nome EXATO do site do fabricante em MAIUSCULAS${sizeFromCode ? `, seguido de ", ${sizeFromCode.toUpperCase()}"` : ""}.
 
-Após buscar, responda APENAS com o JSON no formato especificado.`,
+Apos buscar, responda APENAS com o JSON no formato especificado.`,
   }));
 
   // Extract text from response output
