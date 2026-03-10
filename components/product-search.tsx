@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { SankhyaProduct } from "@/lib/types";
 import { Badge } from "./ui/badge";
+import { apiFetch } from "@/lib/api-fetch";
 import {
   Search,
   ChevronDown,
@@ -116,7 +117,7 @@ export function ProductSearch({}: ProductSearchProps) {
       setSearched(true);
       setDisplayLimit(50);
       try {
-        const res = await fetch(
+        const res = await apiFetch(
           `/api/sankhya/search?q=${encodeURIComponent(q)}&limit=500`
         );
         const data = await res.json();

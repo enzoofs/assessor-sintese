@@ -10,6 +10,7 @@ import { DataReportView } from "@/components/data-report";
 import { AuditView } from "@/components/audit-view";
 import { ProductResult } from "@/lib/types";
 import { productStore } from "@/lib/product-store";
+import { apiFetch } from "@/lib/api-fetch";
 import { FlaskConical } from "lucide-react";
 
 type Tab = "individual" | "lote" | "historico" | "consulta" | "relatorios" | "auditoria";
@@ -75,7 +76,7 @@ export default function Home() {
     code: string
   ): Promise<{ found: boolean; nome?: string } | null> {
     try {
-      const res = await fetch(
+      const res = await apiFetch(
         `/api/sankhya/check-duplicate?code=${encodeURIComponent(code)}`
       );
       const data = await res.json();
@@ -95,7 +96,7 @@ export default function Home() {
       );
 
       try {
-        const res = await fetch("/api/product/lookup", {
+        const res = await apiFetch("/api/product/lookup", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ manufacturerCode: code, brand }),
@@ -216,7 +217,7 @@ export default function Home() {
 
     if (nonLocalCodes.length > 0) {
       try {
-        const res = await fetch("/api/sankhya/check-duplicates", {
+        const res = await apiFetch("/api/sankhya/check-duplicates", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ codes: nonLocalCodes }),
@@ -330,7 +331,7 @@ export default function Home() {
 
     setIsExporting(true);
     try {
-      const res = await fetch("/api/export", {
+      const res = await apiFetch("/api/export", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

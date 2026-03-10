@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { DataReport } from "@/lib/types";
+import { apiFetch } from "@/lib/api-fetch";
 import {
   FileWarning,
   Copy,
@@ -82,7 +83,7 @@ export function DataReportView() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/sankhya/report")
+    apiFetch("/api/sankhya/report")
       .then((r) => r.json())
       .then(setReport)
       .catch(console.error)

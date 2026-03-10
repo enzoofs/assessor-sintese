@@ -13,7 +13,27 @@
       "Bash(curl -s \"http://localhost:3000/api/sankhya/audit\" -o /tmp/audit2.json)",
       "Bash(node -e \"var r=JSON.parse\\(require\\(''fs''\\).readFileSync\\(''C:/Users/ENZOFE~1/AppData/Local/Temp/audit2.json'',''utf8''\\)\\); console.log\\(''Total audited:'', r.total_audited\\); console.log\\(''Group issues:'', r.group_issues.length\\); console.log\\(''Unmapped brands:'', r.unmapped_brands.length\\); console.log\\(''\\\\nSample issues by brand:''\\); var byBrand={}; r.group_issues.forEach\\(function\\(i\\){ var b=i.marca; byBrand[b]=\\(byBrand[b]||0\\)+1; }\\); Object.keys\\(byBrand\\).sort\\(function\\(a,b\\){return byBrand[b]-byBrand[a];}\\).forEach\\(function\\(b\\){ console.log\\('' '', b||''\\(vazio\\)'', '':'', byBrand[b]\\); }\\);\")",
       "Bash(curl -s \"http://localhost:3000/api/sankhya/audit?brand=IDT\" -o /tmp/audit_idt.json)",
-      "Bash(curl -s -X POST \"http://localhost:3000/api/sankhya/audit-export\" -H \"Content-Type: application/json\" -d '{\"\"issues\"\":[{\"\"codprod\"\":5180,\"\"ref_fornecedor\"\":\"\"689A\"\",\"\"marca\"\":\"\"IDT\"\",\"\"nome_produto\"\":\"\"TEST\"\",\"\"issue_type\"\":\"\"wrong_group\"\",\"\"current_value\"\":\"\"20100\"\",\"\"current_label\"\":\"\"BIORAD - REAGENTES\"\",\"\"suggested_value\"\":\"\"10101\"\",\"\"suggested_label\"\":\"\"IDT - PCR\"\",\"\"confidence\"\":\"\"alta\"\",\"\"notes\"\":\"\"teste\"\"}]}' -o /tmp/audit_test.xlsx -w \"%{http_code}\")"
+      "Bash(curl -s -X POST \"http://localhost:3000/api/sankhya/audit-export\" -H \"Content-Type: application/json\" -d '{\"\"issues\"\":[{\"\"codprod\"\":5180,\"\"ref_fornecedor\"\":\"\"689A\"\",\"\"marca\"\":\"\"IDT\"\",\"\"nome_produto\"\":\"\"TEST\"\",\"\"issue_type\"\":\"\"wrong_group\"\",\"\"current_value\"\":\"\"20100\"\",\"\"current_label\"\":\"\"BIORAD - REAGENTES\"\",\"\"suggested_value\"\":\"\"10101\"\",\"\"suggested_label\"\":\"\"IDT - PCR\"\",\"\"confidence\"\":\"\"alta\"\",\"\"notes\"\":\"\"teste\"\"}]}' -o /tmp/audit_test.xlsx -w \"%{http_code}\")",
+      "Bash(npm install -g ngrok)",
+      "Bash(choco install ngrok)",
+      "Bash(npm run dev)",
+      "Bash(npm install)",
+      "Bash(npx next dev)",
+      "Bash(curl -s http://localhost:4040/api/tunnels)",
+      "Bash(tasklist)",
+      "Bash(curl -s \"http://localhost:3000/api/product/lookup\" -X POST -H \"Content-Type: application/json\" -d '{\"\"manufacturerCode\"\":\"\"TEST123\"\",\"\"brand\"\":\"\"Sigma\"\"}')",
+      "Bash(curl -s \"http://localhost:3000/api/product/lookup\" -X POST -H \"Content-Type: application/json\" -d '{\"\"manufacturerCode\"\":\"\"A1170\"\",\"\"brand\"\":\"\"Sigma\"\"}')",
+      "Bash(powershell -Command \"Get-ChildItem ''C:\\\\'' -Directory -Force -ErrorAction SilentlyContinue | ForEach-Object { try { $size = \\(Get-ChildItem $_.FullName -Recurse -Force -ErrorAction SilentlyContinue | Measure-Object -Property Length -Sum\\).Sum; [PSCustomObject]@{Pasta=$_.Name; GB=[math]::Round\\($size/1GB,1\\)} } catch {} } | Sort-Object GB -Descending | Format-Table -AutoSize\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\enzof\\\\Documents\\\\disk-scan.ps1\")",
+      "Bash(du -sh /c/Users/enzof/*)",
+      "Bash(du -sh \"/c/Program Files\"/*)",
+      "Bash(cmd.exe //c \"for /d %i in \\(C:\\\\Users\\\\enzof\\\\*\\) do @\\(echo %i & dir /s /a /-c \"\"%i\"\" 2>nul | findstr /c:\"\"arquivo\\(s\\)\"\" | findstr /v /c:\"\"Dir\\(s\\)\"\"\\)\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\enzof\\\\Documents\\\\disk-scan2.ps1\")",
+      "Bash(for d in AppData Documents Downloads Desktop Games curseforge Pictures Videos Music source AndroidStudioProjects)",
+      "Bash(do echo \"=== $d ===\")",
+      "Bash(du -sb \"/c/Users/enzof/$d\")",
+      "Read(//c/Users/enzof/Documents/assessor-sintese/{printf \"\"%.1f GB/n\"\", $1/**)",
+      "Bash(cmd.exe //c \"for /d %i in \\(C:\\\\Users\\\\enzof\\\\AppData\\\\Local\\\\*\\) do @for /f \"\"tokens=3\"\" %a in \\(''dir /s /-c \"\"%i\"\" 2^>nul ^| findstr /c:\"\"arquivo\\(s\\)\"\"''\\) do @if %a GTR 500000000 echo %a bytes   %i\")"
     ],
     "additionalDirectories": [
       "C:\\Users\\Enzo Ferraz\\.claude\\projects\\c--Users-Enzo-Ferraz-OneDrive---Sintese-Biotecnologia-Documentos-assessor-sintese"

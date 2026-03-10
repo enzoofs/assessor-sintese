@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { AuditIssue, AuditResult } from "@/lib/types";
+import { apiFetch } from "@/lib/api-fetch";
 import {
   Shield,
   AlertTriangle,
@@ -223,7 +224,7 @@ export function AuditView() {
 
   // Load group audit on mount
   useEffect(() => {
-    fetch("/api/sankhya/audit")
+    apiFetch("/api/sankhya/audit")
       .then((r) => r.json())
       .then(setGroupResult)
       .catch(console.error)
@@ -265,7 +266,7 @@ export function AuditView() {
     setNcmIssues([]);
     setNcmAudited(0);
     try {
-      const res = await fetch("/api/sankhya/audit-ncm", {
+      const res = await apiFetch("/api/sankhya/audit-ncm", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -290,7 +291,7 @@ export function AuditView() {
 
     setIsExporting(true);
     try {
-      const res = await fetch("/api/sankhya/audit-export", {
+      const res = await apiFetch("/api/sankhya/audit-export", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ issues: allIssues }),
